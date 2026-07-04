@@ -15,7 +15,7 @@ async function main() {
         data: {
           level: level,
           title: `Đề thi JLPT ${level} - Tháng ${i === 1 ? '7/2023' : '12/2023'}`,
-          isFree: level === "N5" || (level === "N4" && i === 1), // N5 always free, N4 has 1 free
+          accessLevel: (level === "N5" || (level === "N4" && i === 1)) ? "FREE" : "LOGIN", // N5 always free, N4 has 1 free
           metadata: {
             exam: "JLPT",
             level: level,
