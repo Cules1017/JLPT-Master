@@ -24,11 +24,11 @@ export async function POST(req: Request) {
       where: { id: session.user.id },
     });
 
-    if (!user || !user.password) {
+    if (!user || !user.passwordHash) {
       return NextResponse.json({ error: "Người dùng không tồn tại hoặc đăng nhập bằng OAuth" }, { status: 400 });
     }
 
-    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    const isMatch = await bcrypt.compare(oldPassword, user.passwordHash);
     if (!isMatch) {
       return NextResponse.json({ error: "Mật khẩu cũ không chính xác" }, { status: 400 });
     }
@@ -37,7 +37,7 @@ export async function POST(req: Request) {
 
     await prisma.user.update({
       where: { id: user.id },
-      data: { password: hashedPassword },
+      data: { passwordHash: hashedPassword },
     });
 
     return NextResponse.json({ message: "Đổi mật khẩu thành công" });

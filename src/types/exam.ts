@@ -68,10 +68,15 @@ export interface ExamMetadata {
   source?: string;
   total_questions: number;
   time_limit_minutes: Record<string, number>; // e.g., { "section_1": 25, "section_2": 50 }
+  audioUrl?: string;
 }
 
 export interface Exam {
   id: string; // Unique ID for the exam (not in original schema, but good for DB)
+  title: string;
+  level: string;
+  accessLevel: string;
+  planIds?: string[];
   metadata: ExamMetadata;
   sections: Section[];
 }

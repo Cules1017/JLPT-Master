@@ -55,7 +55,7 @@ export function QuestionCard({ question }: QuestionCardProps) {
         </span>
         <div className="flex flex-col gap-2 flex-1">
           <p className="text-lg font-medium leading-relaxed">
-            {renderQuestionText(question.question, question.blank)}
+            {renderQuestionText(question.question, question.blank ?? undefined)}
           </p>
           {question.translation?.question && (
             <p className="text-sm text-foreground/60 italic">{question.translation.question}</p>
