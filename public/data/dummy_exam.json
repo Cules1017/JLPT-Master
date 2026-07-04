@@ -1,0 +1,113 @@
+{
+  "id": "exam-jlpt-n3-sample",
+  "metadata": {
+    "exam": "JLPT",
+    "level": "N3",
+    "year": 2024,
+    "session": "July",
+    "source": "Sample Data",
+    "total_questions": 2,
+    "time_limit_minutes": {
+      "section_1": 30,
+      "section_2": 70
+    }
+  },
+  "sections": [
+    {
+      "section_id": 1,
+      "name": "言語知識（文字・語彙）",
+      "mondai": [
+        {
+          "mondai_id": 1,
+          "title": "問題1",
+          "instruction": "漢字の読み方を一つ選びなさい。",
+          "questions": [
+            {
+              "question_id": 1,
+              "number": 1,
+              "question": "昨日、新しい自転車を買いました。",
+              "blank": "自転車",
+              "choices": [
+                "じどうしゃ",
+                "じてんしゃ",
+                "じどうんしゃ",
+                "じてんしゃん"
+              ],
+              "correct_answer": 2,
+              "answer_explanation": "「自転車」 có cách đọc là じてんしゃ.",
+              "choices_explanation": [
+                "じどうしゃ: Xe ô tô (自動車)",
+                "Đúng",
+                "Sai",
+                "Sai"
+              ],
+              "translation": {
+                "question": "Hôm qua, tôi đã mua một chiếc xe đạp mới."
+              },
+              "vocabulary": [
+                {
+                  "word": "自転車",
+                  "reading": "じてんしゃ",
+                  "meaning_vi": "Xe đạp",
+                  "meaning_en": "Bicycle"
+                }
+              ],
+              "difficulty": "easy",
+              "tags": ["kanji", "reading"]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "section_id": 2,
+      "name": "読解",
+      "mondai": [
+        {
+          "mondai_id": 2,
+          "title": "問題2",
+          "instruction": "次の文章を読んで、質問に答えなさい。",
+          "passage": {
+            "id": "passage_1",
+            "content": "最近、健康のためにジョギングを始める人が増えている。しかし、無理をして怪我をする人も少なくない。自分のペースで続けることが大切だ。"
+          },
+          "questions": [
+            {
+              "question_id": 2,
+              "number": 2,
+              "question": "文章の内容と合っているものはどれか。",
+              "passage_ref": "passage_1",
+              "choices": [
+                "ジョギングを始める人は減っている。",
+                "ジョギングで怪我をする人は全くいない。",
+                "無理をしないで自分のペースでジョギングを続けることが大事だ。",
+                "健康のために激しい運動を毎日するべきだ。"
+              ],
+              "correct_answer": 3,
+              "answer_explanation": "Bài đọc khuyên: 自分のペースで続けることが大切だ (Việc duy trì theo tốc độ của bản thân là quan trọng). Do đó đáp án 3 là chính xác.",
+              "translation": {
+                "question": "Câu nào phù hợp với nội dung đoạn văn?",
+                "choices": [
+                  "Số người bắt đầu chạy bộ đang giảm.",
+                  "Không có ai bị thương khi chạy bộ.",
+                  "Điều quan trọng là duy trì chạy bộ theo nhịp độ của bản thân mà không gắng sức.",
+                  "Nên tập luyện thể thao cường độ cao mỗi ngày vì sức khỏe."
+                ]
+              },
+              "vocabulary": [
+                {
+                  "word": "怪我",
+                  "reading": "けが",
+                  "meaning_vi": "Vết thương",
+                  "meaning_en": "Injury"
+                }
+              ],
+              "difficulty": "medium",
+              "tags": ["reading", "comprehension"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Exam {
+  id             String        @id @default(uuid())
+  level          String        @default("N3") // e.g. N1, N2, N3, N4, N5
+  title          String        @default("Untitled Exam")
+  accessLevel    String        @default("FREE") // "FREE", "LOGIN", "PREMIUM"
+  planIds        Json          @default("[]")   // Mảng chứa các PlanID nếu accessLevel là PREMIUM
+  metadata       Json
+  sections       Json
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  histories      ExamHistory[]
+}
+
+model ExamHistory {
+  id               Int      @id @default(autoincrement())
+  examId           String
+  userId           String?  // Optional for guests initially, or required if we force login
+  mode             String   // 'practice' | 'test'
+  score            Float?
+  totalQuestions   Int
+  answers          Json     // Object containing question_id -> chosen choice index
+  timeSpentSeconds Int
+  date             DateTime @default(now())
+  
+  exam             Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  user             User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  name           String?
+  passwordHash   String
+  role           Role      @default(USER)
+  emailVerified  DateTime?
+  verifyToken    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  histories      ExamHistory[]
+  subscriptions  Subscription[]
+}
+
+model Plan {
+  id             String         @id @default(uuid())
+  name           String
+  cycles         Json           // Mảng các chu kỳ: { name, durationDays, price, originalPrice }
+  features       Json
+  metadata       Json?          @default("{}")
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+
+  subscriptions  Subscription[]
+}
+
+model Subscription {
+  id             String    @id @default(uuid())
+  userId         String
+  planId         String
+  startDate      DateTime  @default(now())
+  endDate        DateTime
+  status         String    @default("ACTIVE") // ACTIVE, EXPIRED, CANCELLED
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user           User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plan           Plan      @relation(fields: [planId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  GUEST
+  USER
+  ADMIN
+}
