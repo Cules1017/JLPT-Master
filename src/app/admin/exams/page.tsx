@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Upload, Plus, Trash2, Edit, Loader2, Crown, Shield, Search, CheckSquare, Square, FileText, Copy, Check, X } from "lucide-react";
+import { Upload, Plus, Trash2, Edit, Loader2, Crown, Shield, Search, CheckSquare, Square, FileText, Copy, Check, X, AlertCircle } from "lucide-react";
 import { upload } from '@vercel/blob/client';
 import Link from "next/link";
 
