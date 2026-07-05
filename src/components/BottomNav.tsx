@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Home, User, Clock, ShoppingCart, LogIn, Shield, Search } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { motion } from "framer-motion";
@@ -9,6 +9,7 @@ import { SpotlightSearch } from "./SpotlightSearch";
 
 export function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const { data: session } = useSession();
 
   const navItems = [
@@ -99,9 +100,9 @@ export function BottomNav() {
           }
 
           return (
-            <Link 
+            <button 
               key={item.href} 
-              href={item.href!}
+              onClick={() => router.push(item.href!)}
               className="relative z-10 w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-250 cursor-pointer group"
               style={{
                 color: isActive ? '#fff' : 'rgba(40, 35, 60, 0.55)'
@@ -129,7 +130,7 @@ export function BottomNav() {
 
               {/* Icon */}
               <Icon className="w-6 h-6 relative z-10" strokeWidth={1.8} />
-            </Link>
+            </button>
           );
         })}
       </div>
