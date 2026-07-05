@@ -11,7 +11,12 @@ export const transporter = nodemailer.createTransport({
 });
 
 export async function sendVerificationEmail(email: string, token: string) {
-  const verifyUrl = `${process.env.NEXTAUTH_URL}/verify-email?token=${token}`;
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL 
+    || process.env.NEXTAUTH_URL 
+    || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : null)
+    || "https://jlpt-master-practice.vercel.app";
+    
+  const verifyUrl = `${baseUrl}/verify-email?token=${token}`;
 
   await transporter.sendMail({
     from: `"${process.env.SMTP_FROM_NAME}" <${process.env.SMTP_FROM_ADDRESS}>`,
