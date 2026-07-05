@@ -3,7 +3,7 @@ import { auth } from "@/lib/auth";
 
 export default auth((req) => {
   const { nextUrl } = req;
-  const isLoggedIn = !!req.auth;
+  const isLoggedIn = !!req.auth?.user;
   const role = req.auth?.user?.role;
 
   const isApiAuthRoute = nextUrl.pathname.startsWith("/api/auth");
