@@ -10,7 +10,8 @@ import { SpotlightSearch } from "./SpotlightSearch";
 export function BottomNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const isLoading = status === "loading";
 
   const navItems = [
     {
@@ -34,9 +35,9 @@ export function BottomNav() {
       icon: ShoppingCart,
     },
     {
-      name: !session ? "Đăng nhập" : session.user.role === "ADMIN" ? "Tài khoản (Admin)" : "Tài khoản",
-      href: session ? "/profile" : "/login",
-      icon: !session ? LogIn : session.user.role === "ADMIN" ? Shield : User,
+      name: isLoading ? "Đang tải..." : !session ? "Đăng nhập" : session.user.role === "ADMIN" ? "Tài khoản (Admin)" : "Tài khoản",
+      href: isLoading ? "#" : session ? "/profile" : "/login",
+      icon: isLoading ? User : !session ? LogIn : session.user.role === "ADMIN" ? Shield : User,
     },
   ];
 
@@ -102,8 +103,8 @@ export function BottomNav() {
           return (
             <button 
               key={item.href} 
-              onClick={() => { window.location.href = item.href!; }}
-              className="relative z-10 w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-250 cursor-pointer group"
+              onClick={() => { if (item.href !== "#") window.location.href = item.href!; }}
+              className={`relative z-10 w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-250 group ${item.href === "#" ? "cursor-not-allowed opacity-50" : "cursor-pointer"}`}
               style={{
                 color: isActive ? '#fff' : 'rgba(40, 35, 60, 0.55)'
               }}
