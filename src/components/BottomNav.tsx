@@ -102,7 +102,7 @@ export function BottomNav() {
           return (
             <button 
               key={item.href} 
-              onClick={() => router.push(item.href!)}
+              onClick={() => { window.location.href = item.href!; }}
               className="relative z-10 w-14 h-14 flex items-center justify-center rounded-full transition-colors duration-250 cursor-pointer group"
               style={{
                 color: isActive ? '#fff' : 'rgba(40, 35, 60, 0.55)'
