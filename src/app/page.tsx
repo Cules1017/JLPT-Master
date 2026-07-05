@@ -279,11 +279,15 @@ export default function Home() {
                 </div>
                 <h3 className="text-2xl font-black mb-2 text-foreground">Yêu cầu Đăng nhập</h3>
                 <p className="text-foreground/60 mb-8 font-medium">Bạn cần đăng nhập để làm đề thi này. Chờ gì nữa, tham gia ngay thôi!</p>
-                <Link href="/login" className="w-full">
-                  <button className="w-full py-4 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-600 transition-colors shadow-lg shadow-indigo-500/25">
-                    Đăng nhập ngay
-                  </button>
-                </Link>
+                <button 
+                  onClick={() => {
+                    setPopup({ show: false, type: 'login' });
+                    router.push('/login');
+                  }}
+                  className="w-full py-4 bg-indigo-500 text-white font-bold rounded-xl hover:bg-indigo-600 transition-colors shadow-lg shadow-indigo-500/25"
+                >
+                  Đăng nhập ngay
+                </button>
               </>
             ) : (
               <>
